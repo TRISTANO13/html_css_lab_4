@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Grade calculator</title>
+</head>
+    <body>
+        <script>
+            let inputValue = prompt("How many courses did you finish?", "0");
+            let numOfCourses = parseInt(inputValue);
+        
+            if (isNaN(numOfCourses)) {
+                document.write("Invalid Input!");
+            } else {
+                document.write(`You finished ${numOfCourses} course(s).<br>`);
+        
+                let courseMarks = [];
+                let totalMarks = 0;
+        
+                for (let i = 0; i < numOfCourses; i++) {
+                    let mark = parseInt(prompt(`Enter mark for course ${i + 1}:`));
+                    while (isNaN(mark) || mark < 0 || mark > 100) {
+                        mark = parseInt(prompt(`Invalid input! Please enter a valid mark (0-100) for course ${i + 1}:`));
+                    }
+                    courseMarks.push(mark);
+                    totalMarks += mark;
+                }
+        
+                let average = totalMarks / courseMarks.length;
+        
+                // Display the course marks in a column
+                document.write(`<strong>Course Marks:</strong><br>`);
+                for (let i = 0; i < courseMarks.length; i++) {
+                    document.write(`${courseMarks[i]}<br>`);
+                }
+        
+                // Determine and display the grade
+                document.write(`<br>`);
+                if (average >= 90 && average <= 100) {
+                    document.write(`Your final average is ${average.toFixed(2)}. Your grade is A+`);
+                } else if (average >= 80) {
+                    document.write(`Your final average is ${average.toFixed(2)}. Your grade is B`);
+                } else if (average >= 70) {
+                    document.write(`Your final average is ${average.toFixed(2)}. Your grade is C`);
+                } else if (average >= 60) {
+                    document.write(`Your final average is ${average.toFixed(2)}. Your grade is D`);
+                } else if (average < 60) {
+                    document.write(`Your final average is ${average.toFixed(2)}. Your grade is F`);
+                } else {
+                    document.write(`Sorry, All the marks have to be from minimum 0 to maximum 100!`);
+                }
+            }
+        </script>
+    </body>
+</html>
